@@ -3,12 +3,12 @@
 
 using namespace std;
 
-void resultboard(int,int);
+void resultboard(int,int); //generate loan table
 float getintr(int);	//get interest rate by down rate
-int totalpay (int, int, float);
-int totalintr (int ,int ,float);
-int paymonth (int, int, float);
-int calc(int, int, float, float);	//total payment per monthly
+int totalpay (int, int, float);	//total payment calcucator
+int totalintr (int ,int ,float);	//total interst calculator
+int paymonth (int, int, float);	//payment per month
+int calc(int, int, float, float);	// main calculator
 int main (void){
 	int bprice, pdown;
 	float intr, time;
@@ -22,13 +22,13 @@ int main (void){
 	cout << "Your down payment -> " << (bprice * pdown)/100 << " Baht."<< endl;
 	cout << "Interest rate per year -> " << getintr (pdown) << " %." << endl << endl;
 	
-	resultboard(bprice, pdown);
+	resultboard(bprice, pdown);	//show loan table
 	
 	char ask;
 	cout << "\n\nRun again ? (Y/N) ";
 	cin >> ask;
 	if(ask == 'y'){
-		system("CLS");
+		system("CLS");	//clear screen
 		main();
 	}
 }
@@ -39,13 +39,13 @@ void resultboard(int bp, int pd){
 	}
 }
 int paymonth(int bp, int pd, float tm){
-	return calc(bp, ((bp * pd)/100), tm, getintr(pd));
+	return calc(bp, ((bp * pd)/100), tm, getintr(pd));	//shorter for long argument by calc function
 }
 int totalintr (int bp, int pd, float tm){
-	return  (paymonth(bp, pd,tm) * (tm*12)) + ((bp * pd)/100) - bp;
+	return  totalpay(bp, pd, tm) - bp;	//total pay - bike price
 }
 int totalpay (int bp, int pd, float tm){
-	return (paymonth(bp, pd,tm) * (tm*12)) + ((bp * pd)/100);
+	return (paymonth(bp, pd,tm) * (tm*12)) + ((bp * pd)/100);	//(pay per month*pay time (month))+down price
 }
 int calc (int b, int d, float t, float i){
 	int tloan, tintr, mpayment;
@@ -56,7 +56,7 @@ int calc (int b, int d, float t, float i){
 	return mpayment = tloan/(t*12);
 }
 float getintr (int d){
-	if (d >= 30){
+	if (d >= 30){	//d is a down price
 		return 6.5;
 	}
 	else if (d >= 20){
