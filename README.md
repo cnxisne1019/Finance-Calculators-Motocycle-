@@ -1,4 +1,4 @@
-# Finance-Calculators-Motocycle-
+# Finance-Calculators-Motocycle
 This program is used to calculate and display the monthly payment schedule of the loans for the purchase of a motorcycle.
 
 - interest rate limit from 6.5% - 7%.
